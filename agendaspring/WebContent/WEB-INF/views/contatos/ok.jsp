@@ -8,9 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<c:import url="menu.jsp"></c:import>
-
-<h1>Bem vindo a aplicação spring!</h1>
+	<c:import url="../menu.jsp"></c:import>
+	<h1>O contato foi adicionado!</h1>
 </body>
 </html>
