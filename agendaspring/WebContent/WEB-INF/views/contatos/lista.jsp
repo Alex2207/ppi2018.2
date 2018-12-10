@@ -30,6 +30,7 @@
 			<td>${contato.endereco }</td>
 			<td><fmt:formatDate value="${contato.dataNascimento.time }" pattern="dd/MM/yyyy" /></td>
 			<td><a href="/agendaspring/contatos/remover?id=${contato.id }">Remover</a></td>
+			<td><a href="/agendaspring/contatos/selecionar?id=${contato.id }">Alterar</a></td>
 		</tr>
 	</c:forEach>
 	</tbody>

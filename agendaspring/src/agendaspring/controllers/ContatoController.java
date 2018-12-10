@@ -47,4 +47,27 @@ public class ContatoController {
 		
 		return "redirect:../contatos";
 	}
+	
+	@RequestMapping("/selecionar")
+	public ModelAndView selecionar(Contato contato) {
+		System.out.println("Chamou método selecionar!!");
+		ContatoDAO contatoDAO = new ContatoDAO();
+		contato = contatoDAO.getById(contato.getId());
+		
+		ModelAndView model = new ModelAndView("/contatos/formAlterar");
+		model.addObject("contato", contato);
+		
+		return model;
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(Contato contato) {
+		System.out.println("Chamou o metodo alterar!!");
+		System.out.println(contato);
+		
+		ContatoDAO contatoDAO = new ContatoDAO();
+		contatoDAO.alterar(contato);
+		
+		return "redirect:/contatos";
+	}
 }
