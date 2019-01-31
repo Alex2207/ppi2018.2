@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import agendaspring.daos.ContatoDAO;
-import agendaspring.models.Contato;
+import agendaspring.daos.ClienteDAO;
+import agendaspring.models.Cliente;
 
 @Controller
 @RequestMapping("/contatos")
@@ -22,9 +22,9 @@ public class ContatoController {
 	}
 	
 	@PostMapping
-	public String adicionar(Contato contato) {
+	public String adicionar(Cliente contato) {
 	System.out.println(contato);
-	ContatoDAO dao = new ContatoDAO();
+	ClienteDAO dao = new ClienteDAO();
 	dao.inserir(contato);
 	
 	return "redirect:contatos";
@@ -32,26 +32,26 @@ public class ContatoController {
 	
 	@GetMapping
 	public ModelAndView listar() {
-		ContatoDAO contatoDAO = new ContatoDAO();
-		List<Contato> lista = contatoDAO.getLista();
+		ClienteDAO contatoDAO = new ClienteDAO();
+		List<Cliente> lista = contatoDAO.getLista();
 		ModelAndView model = new ModelAndView("contatos/lista");
 		model.addObject("contatos", lista);
 		return model;
 	}
 	
 	@RequestMapping("/remover")
-	public String remover(Contato contato) {
+	public String remover(Cliente contato) {
 		System.out.println("Chamou método de remover!");
-		ContatoDAO contatoDAO = new ContatoDAO();
+		ClienteDAO contatoDAO = new ClienteDAO();
 		contatoDAO.remover(contato);
 		
 		return "redirect:../contatos";
 	}
 	
 	@RequestMapping("/selecionar")
-	public ModelAndView selecionar(Contato contato) {
+	public ModelAndView selecionar(Cliente contato) {
 		System.out.println("Chamou método selecionar!!");
-		ContatoDAO contatoDAO = new ContatoDAO();
+		ClienteDAO contatoDAO = new ClienteDAO();
 		contato = contatoDAO.getById(contato.getId());
 		
 		ModelAndView model = new ModelAndView("/contatos/formAlterar");
@@ -61,11 +61,11 @@ public class ContatoController {
 	}
 	
 	@PostMapping("/alterar")
-	public String alterar(Contato contato) {
+	public String alterar(Cliente contato) {
 		System.out.println("Chamou o metodo alterar!!");
 		System.out.println(contato);
 		
-		ContatoDAO contatoDAO = new ContatoDAO();
+		ClienteDAO contatoDAO = new ClienteDAO();
 		contatoDAO.alterar(contato);
 		
 		return "redirect:/contatos";

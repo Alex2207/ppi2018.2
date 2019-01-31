@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Contato {
+public class Cliente {
 
 	private Long id;
 	private String nome;

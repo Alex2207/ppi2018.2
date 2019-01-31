@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import agendaspring.models.Contato;
+import agendaspring.models.Cliente;
 
-public class ContatoDAO {
+public class ClienteDAO {
 
 	private Connection connection;
 
-	public ContatoDAO() {
+	public ClienteDAO() {
 		connection = ConnectionFactory.getConnection();
 	}
 
-	public boolean inserir(Contato contato) {
+	public boolean inserir(Cliente contato) {
 
 		String sql = "insert into contatos (nome, email, endereco, dataNascimento) values (?, ?, ?, ?);";
 
@@ -43,8 +43,8 @@ public class ContatoDAO {
 		return true;
 	}
 
-	public List<Contato> getLista() {
-		List<Contato> result = new ArrayList<>();
+	public List<Cliente> getLista() {
+		List<Cliente> result = new ArrayList<>();
 
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement("select * from contatos;");
@@ -52,7 +52,7 @@ public class ContatoDAO {
 
 			while (rs.next()) {
 
-				Contato contato = new Contato();
+				Cliente contato = new Cliente();
 				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
@@ -73,7 +73,7 @@ public class ContatoDAO {
 		return result;
 	}
 
-	public boolean alterar(Contato contato) {
+	public boolean alterar(Cliente contato) {
 		String sql = "update contatos set nome=?, email=?, endereco=?, dataNascimento=? where id=?;";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class ContatoDAO {
 		return true;
 	}
 
-	public boolean remover(Contato contato) {
+	public boolean remover(Cliente contato) {
 		try {
 			PreparedStatement stmt = connection.prepareStatement("delete from contatos where id=?;");
 			stmt.setLong(1, contato.getId());
@@ -104,8 +104,8 @@ public class ContatoDAO {
 		return true;
 	}
 
-	public Contato getById(Long id) {
-		Contato result = null;
+	public Cliente getById(Long id) {
+		Cliente result = null;
 
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement("select * from contatos where id = ?;");
@@ -114,7 +114,7 @@ public class ContatoDAO {
 
 			if (rs.next()) {
 
-				result = new Contato();
+				result = new Cliente();
 				result.setId(rs.getLong("id"));
 				result.setNome(rs.getString("nome"));
 				result.setEmail(rs.getString("email"));
